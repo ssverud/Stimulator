@@ -1,6 +1,9 @@
 #include <Arduino.h>
 #include "WiFi.h"
 #include "AsyncUDP.h"
+#include "Joystick.h"
+#include "Potentiometer.h"
+
 
 const char * ssid = "AndroidAPC910";
 const char * password = "fnsa6355";
