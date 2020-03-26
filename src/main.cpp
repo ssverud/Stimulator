@@ -9,9 +9,14 @@ const char *password = "fnsa6355";
 
 AsyncUDP udp;
 
+Joystick joystick(36, 39);
+Potentiometer potentiometer(34);
+
 void setup()
 {
     Serial.begin(9600);
+
+
 
     //Connection to pxlserver
     WiFi.mode(WIFI_STA);
@@ -56,6 +61,7 @@ void setup()
             Serial.println(s);
             udp.printf("Received your message!");
         */
+       Serial.println();
         });
     }
 }
@@ -64,10 +70,8 @@ void loop()
 {
 
     //Potentiometer
-    Potentiometer potentiometer(34);
     potentiometer.loop();
 
     //Joystick
-    Joystick joystick(36, 39);
     joystick.loop();
 }

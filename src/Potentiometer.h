@@ -6,7 +6,7 @@ class Potentiometer
 public:
     int potentiometerPin;
     int potentiometerValue;
-    int previousPotentiometerValue;
+    int previousPotentiometerValue = 0;
     int tolerance = 150;
     AsyncUDP Pudp;
 
@@ -39,6 +39,10 @@ public:
         if (previousPotentiometerValue > 800 && previousPotentiometerValue < 1200)
         {
             Pudp.writeTo((const uint8_t *)"color 50 50 50", 14, IPAddress(192, 168, 43, 255), 7000);
+        }
+        if (previousPotentiometerValue > 1200 && previousPotentiometerValue < 1600)
+        {
+            Pudp.writeTo((const uint8_t *)"color 50 90 60", 14, IPAddress(192, 168, 43, 255), 7000);
         }
         if (previousPotentiometerValue > 1600 && previousPotentiometerValue < 2000)
         {

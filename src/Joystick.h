@@ -8,10 +8,10 @@ public:
     int joystickPinY;
     int joystickValueX;
     int joystickValueY;
-    int previousJoystickValueX;
-    int previousJoystickValueY;
+    int previousJoystickValueX = 0;
+    int previousJoystickValueY = 0;
     int joystickButtonPin = 13;
-    int tolerance = 200;
+    int tolerance = 400;
     AsyncUDP Judp;
 
     //joystick constructor
@@ -21,6 +21,7 @@ public:
         this->joystickPinY = joystickPinY;
         pinMode(joystickPinX, INPUT);
         pinMode(joystickPinY, INPUT);
+        pinMode(joystickButtonPin, INPUT_PULLUP);
     }
 
     // Joystick loop
@@ -45,7 +46,9 @@ public:
 
         //if clicked on joystick initiate pixel
         if (digitalRead(joystickButtonPin) == LOW)
+        
         {
+            Serial.println("CLICKED ON");
             Judp.writeTo((const uint8_t *)"init 10 10", 10, IPAddress(192, 168, 43, 255), 7000);
         }
 
